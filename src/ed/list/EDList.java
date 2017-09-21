@@ -15,7 +15,23 @@ public class EDList {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        myList <String> lista = new  myList();
+        lista.insertFirst("10");
+        lista.insertFirst("30");
+        lista.insertFirst("50");
+        lista.insertLast("20");
+        lista.insertFirst("40");
+        lista.showlist();
+        lista.deleteNode("10");
+        lista.showlist();
+        lista.deleteNode("30");
+        lista.showlist();
+        lista.deleteNode("20");
+        lista.showlist();
+        lista.deleteNode("40");
+        lista.showlist();
+        lista.deleteNode("50");
+        lista.showlist();
     }
     
 }
