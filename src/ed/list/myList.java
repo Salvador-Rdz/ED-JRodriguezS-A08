@@ -13,12 +13,14 @@ public class myList<T> {
     Node first;
     Node last;
     Node pointer;
+    int length;
     
     public myList()
     {
         first  = null;
         last=null;
         pointer=null;
+        length=0;
     }
     myList (T data)
     {
@@ -26,6 +28,7 @@ public class myList<T> {
         first = node;
         last = node;
         node.next = null;
+        length++;
     }
     public boolean isEmpty()
     {
@@ -39,12 +42,14 @@ public class myList<T> {
             first = node;
             last = node;
             node.next=null;
+            
         }
         else
         {
             node.next=first;
             first=node;
         }
+        length++;
     }
     public void insertLast(T d)
     {
@@ -60,6 +65,7 @@ public class myList<T> {
             last.next = node;
             last = node;
         }
+        length++;
     }
     public void deleteFirst()
     {
@@ -75,6 +81,7 @@ public class myList<T> {
                 first=first.next;
             }
         }
+        length--;
     }
     public void deleteLast()
     {
@@ -96,6 +103,7 @@ public class myList<T> {
                 pointer = null;
             }
         }
+        length--;
     }
     //Eliminar nodo
     public boolean deleteNode(T n)
@@ -103,13 +111,18 @@ public class myList<T> {
        Node p=fetchBack(n);
        if(p!=null)
        { 
-            if(fetchBack(n).data==n)
+            if(p.data==n)
             { 
                 deleteFirst();
             }
+            else if(fetch(n)==last.data)
+            {
+                deleteLast();
+            }
             else
             { 
-                p.next=p.next.next;            
+                p.next=p.next.next;       
+                length--;     
             }
        return true;
        }
@@ -160,6 +173,7 @@ public class myList<T> {
                 else
                 {
                     pointer=first;
+                    int i=0;
                     while(pointer.next!=null)
                     {
                         if(pointer.next.data==n)
@@ -172,5 +186,16 @@ public class myList<T> {
             }
         }
         return null;
+    }
+    public void showlist()
+    {
+        pointer=first;
+        System.out.print("first ->");
+        for (int i=0;i<length;i++)
+        {
+            System.out.print("["+pointer.data.toString()+"]->");
+            pointer=pointer.next;
+        }
+        System.out.println("<-last");
     }
 }
